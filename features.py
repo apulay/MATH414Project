@@ -35,7 +35,7 @@ def featureExtraction(filepath):
     features.extend(mfcc_mean)
     features.extend(wavelet_energy)
 
-    #get coefficients
+    #get wavelet coefficients
     coeffs = []
     current_signal = y
     for i in range(4): #change number to set different amt of level
@@ -44,6 +44,5 @@ def featureExtraction(filepath):
         current_signal = cA
 
     coeffs.append(current_signal)
-
 
     return np.array(features)
