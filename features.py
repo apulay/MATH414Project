@@ -35,4 +35,15 @@ def featureExtraction(filepath):
     features.extend(mfcc_mean)
     features.extend(wavelet_energy)
 
+    #get coefficients
+    coeffs = []
+    current_signal = y
+    for i in range(4): #change number to set different amt of level
+        cA, cD = pywt.dwt(current_signal, 'db4') #cA = remaining signal, cD = difference
+        coeffs.append(cD)
+        current_signal = cA
+
+    coeffs.append(current_signal)
+
+
     return np.array(features)
